@@ -1,0 +1,27 @@
+{
+  "name": "ebsi_api_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@cef-ebsi/app-jwt": "^0.0.13",
+    "@cef-ebsi/ebsi-did-resolver": "^3.2.0",
+    "@cef-ebsi/key-did-resolver": "^2.0.0-alpha.2",
+    "@cef-ebsi/oauth2-auth": "^3.0.0-alpha.3",
+    "@cef-ebsi/problem-details-errors": "^2.1.2",
+    "@cef-ebsi/siop-auth": "^4.0.0-alpha.3",
+    "@cef-ebsi/verifiable-credential": "^4.5.2",
+    "@cef-ebsi/verifiable-presentation": "^5.4.2",
+    "@cef-ebsi/wallet-lib": "^5.0.0-alpha.3",
+    "cors": "^2.8.5",
+    "did-resolver": "^4.1.0",
+    "express": "^4.18.2",
+    "multiformats": "^1.1.13"
+  }
+}
