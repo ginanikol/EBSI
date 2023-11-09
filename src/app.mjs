@@ -46,6 +46,32 @@ app.post('/create-did-from-jwk', (req, res) => {
 
 //////////////////////////////////////////////////////////////////////////////////
 
+// Define a route for resolving a DID
+app.get('/resolve-did/:did', (req, res) => {
+    try {
+        const didToResolve = req.params.did;
+
+        const keyResolver = getResolver();
+        const didResolver = new Resolver(keyResolver);
+
+        didResolver
+            .resolve(didToResolve)
+            .then((doc) => {
+                res.json(doc);
+            })
+            .catch((error) => {
+                console.error(error);
+                res.status(500).json({ error: 'An error occurred while resolving the DID.' });
+            });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while resolving the DID.' });
+    }
+});
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 const port = 8000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
