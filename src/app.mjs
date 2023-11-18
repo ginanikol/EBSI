@@ -3,6 +3,7 @@ import express from 'express';
 import { getResolver } from "@cef-ebsi/key-did-resolver";
 import { util } from "@cef-ebsi/key-did-resolver";
 import {Resolver} from "did-resolver";
+import { createVerifiableCredentialJwt } from "@cef-ebsi/verifiable-credential";
 import { randomBytes } from 'crypto';
 import cors from 'cors';
 
@@ -69,6 +70,19 @@ app.get('/resolve-did/:did', (req, res) => {
     }
 });
 
+app.post('/generate-vc-jwt', (req, res) => {
+    try {
+        const vcPayload = req.body.vcPayload;
+        const issuer = req.body.issuer;
+        const options = req.body.options;
+
+        const vcJwt = createVerifiableCredentialJwt(vcPayload, issuer, options);
+        res.json({ vcJwt });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while generating the Verifiable Credential JWT.' });
+    }
+});
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
